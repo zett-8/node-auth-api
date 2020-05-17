@@ -18,7 +18,7 @@
     "sequelize-cli": "^5.5.1"
   },
   "scripts": {
-    "dev": "export NODE_ENV=develop && nodemon .",
+    "dev": "export NODE_ENV=development && nodemon .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

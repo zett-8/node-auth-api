@@ -1,5 +1,6 @@
 {
   "development": {
+    "use_env_variable": "",
     "username": "postgres",
     "password": "postgres",
     "database": "app",
@@ -7,6 +8,7 @@
     "dialect": "postgres"
   },
   "test": {
+    "use_env_variable": "",
     "username": "postgres",
     "password": "postgres",
     "database": "app",
@@ -14,6 +16,7 @@
     "dialect": "postgres"
   },
   "production": {
+    "use_env_variable": "",
     "username": "postgres",
     "password": "postgres",
     "database": "app",
