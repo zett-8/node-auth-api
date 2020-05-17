@@ -14,7 +14,8 @@
     "sequelize": "^5.21.9"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "sequelize-cli": "^5.5.1"
   },
   "scripts": {
     "dev": "export NODE_ENV=develop && nodemon .",
