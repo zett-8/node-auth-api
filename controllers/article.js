@@ -3,6 +3,23 @@ const Article = require('../models').Article
 const Tag = require('../models').Tag
 
 module.exports = {
+  list(req, res) {
+    return Article
+      .findAll({
+        include: [{
+          model: Genre,
+          as: 'genre'
+        },{
+          model: Tag,
+          as: 'tags'
+        }]
+      })
+      .then(articles => res.status(200).send(articles))
+      .catch(() => res.status(400).send({
+        message: 'Not found'
+      }))
+  },
+
   add(req, res) {
     return Article
       .create({

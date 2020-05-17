@@ -14,6 +14,20 @@ module.exports = {
       .catch(error => res.status(400).send(error))
   },
 
+  getById(req, res) {
+    return Genre
+      .findByPk(req.params.id, {
+        include: [{
+          model: Article,
+          as: 'articles'
+        }]
+      })
+      .then(genre => res.status(200).send(genre))
+      .catch(() => res.status(400).send({
+        message: 'Not fount'
+      }))
+  },
+
   add(req, res) {
     return Genre
       .create({
