@@ -19,6 +19,7 @@
     "sequelize-cli": "^5.5.1"
   },
   "scripts": {
+    "start": "docker-compose up",
     "dev": "export NODE_ENV=development && nodemon .",
     "test": "npx jest ."
   },
