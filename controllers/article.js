@@ -5,6 +5,15 @@ const Tag = require('../models').Tag
 module.exports = {
   list(req, res) {
     return Article
+      .findAll()
+      .then(articles => res.status(200).send(articles))
+      .catch(() => res.status(400).send({
+        message: 'Not found'
+      }))
+  },
+
+  withChildren(req, res) {
+    return Article
       .findAll({
         include: [{
           model: Genre,

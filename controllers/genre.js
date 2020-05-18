@@ -4,6 +4,13 @@ const Article = require('../models').Article
 module.exports = {
   list(req, res) {
     return Genre
+      .findAll()
+      .then(genre => res.status(200).send(genre))
+      .catch(error => res.status(400).send(error))
+  },
+
+  withChildren(req, res) {
+    return Genre
       .findAll({
         include: [{
           model: Article,
