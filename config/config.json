@@ -10,7 +10,8 @@
   "test": {
     "use_env_variable": "",
     "storage": "test-db.sqlite3",
-    "dialect": "sqlite"
+    "dialect": "sqlite",
+    "logging": false
   },
   "production": {
     "use_env_variable": "",
