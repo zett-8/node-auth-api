@@ -9,11 +9,8 @@
   },
   "test": {
     "use_env_variable": "",
-    "username": "postgres",
-    "password": "postgres",
-    "database": "app",
-    "host": "db",
-    "dialect": "postgres"
+    "storage": "test-db.sqlite3",
+    "dialect": "sqlite"
   },
   "production": {
     "use_env_variable": "",
