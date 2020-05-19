@@ -1,4 +1,4 @@
-FROM node:10
+FROM node:10-alpine
 
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
