@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken')
+const JwtOptions = require('./auth').JwtOptions
 const User = require('../models').User
 
 module.exports = {
@@ -24,7 +26,9 @@ module.exports = {
       })
       .then(async (user) => {
         if (await user.validPassword(req.body.password)) {
-          return res.status(200).send('OK')
+          const payload = { email: user.email }
+          const token = jwt.sign(payload, JwtOptions.secretOrKey)
+          return res.status(200).send(token)
         } else {
           return res.status(400).send({
             message: 'wrong password'
