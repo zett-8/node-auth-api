@@ -6,6 +6,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "http-errors": "^1.7.3",
     "jsonwebtoken": "^8.5.1",
@@ -25,7 +26,7 @@
   },
   "scripts": {
     "start": "docker-compose up",
-    "dev": "export NODE_ENV=development && nodemon .",
+    "dev": "export NODE_ENV=development && nodemon --legacy-watch .",
     "test": "export NODE_ENV=test && npx sequelize-cli db:migrate && npx jest .",
     "migrate:dev": "docker-compose run --rm -e NODE_ENV=development server npx sequelize db:migrate"
   },

@@ -30,7 +30,7 @@ module.exports = {
           const token = jwt.sign(payload, JwtOptions.secretOrKey)
           return res.status(200).cookie('jwt', token, {
             httpOnly: true,
-            secure: true
+            secure: true,
           }).send('authenticated')
         } else {
           return res.status(400).send({

@@ -2,6 +2,7 @@ const createError = require('http-errors')
 const express = require('express')
 const cookieParser = require('cookie-parser')
 const loggar = require('morgan')
+const cors = require('cors')
 
 const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users')
@@ -9,6 +10,7 @@ const passport = require('./controllers/auth').passport
 
 const app = express()
 
+app.use(cors({ credentials: true }))
 app.use(loggar('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
