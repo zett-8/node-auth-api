@@ -28,7 +28,10 @@ module.exports = {
         if (await user.validPassword(req.body.password)) {
           const payload = { email: user.email }
           const token = jwt.sign(payload, JwtOptions.secretOrKey)
-          return res.status(200).send(token)
+          return res.status(200).cookie('jwt', token, {
+            httpOnly: true,
+            secure: true
+          }).send('authenticated')
         } else {
           return res.status(400).send({
             message: 'wrong password'
