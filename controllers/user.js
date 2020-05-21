@@ -43,5 +43,9 @@ module.exports = {
       .catch(() => res.status(404).send({
         message: 'not found'
       }))
+  },
+
+  logout(req, res) {
+    return res.status(200).clearCookie('jwt-signature').send()
   }
 }

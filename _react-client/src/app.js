@@ -25,6 +25,10 @@ export const App = () => {
       .catch(err => console.log(err))
   }
 
+  const logout = () => {
+    axios.get('/users/logout').then(() => localStorage.removeItem('jwt-token'))
+  }
+
   return (
     <div>
       main page
@@ -37,6 +41,7 @@ export const App = () => {
         <input text={'text'} name={'password'} value={password} onChange={e => setPass(e.target.value)}></input>
         <button type={'submit'}>login</button>
       </form>
+      <button onClick={logout}>logout</button>
     </div>
   )
 }
