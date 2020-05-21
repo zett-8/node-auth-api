@@ -20,6 +20,7 @@ module.exports = {
   },
 
   login(req, res) {
+    console.log(req.body)
     return User
       .findOne({
         where: { email: req.body.email}
@@ -31,6 +32,7 @@ module.exports = {
           return res.status(200).cookie('jwt', token, {
             httpOnly: true,
             secure: true,
+            sameSite: 'None'
           }).send('authenticated')
         } else {
           return res.status(400).send({

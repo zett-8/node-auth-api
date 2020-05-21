@@ -27,8 +27,20 @@ module.exports = {
 
   devServer: {
     contentBase: path.join(path.resolve(__dirname), 'dist'),
+    hot: true,
     compress: true,
-    port: 8000
+    port: 8000,
+    https: true,
+    proxy: {
+      '/users': {
+        target: 'http://localhost:3333/',
+        secure: true
+      },
+      '/api': {
+        target: 'http://localhost:3333/',
+        secure: true
+      },
+    }
   },
 
   plugins: [

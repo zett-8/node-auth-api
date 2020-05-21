@@ -8,7 +8,7 @@ export const App = () => {
 
   const fetchData = () => {
     axios
-      .get('http://localhost:3333/api/genre')
+      .get('api/genre', { withCredentials: true })
       .then(res => setData(res.data))
       .catch(err => console.log(err))
   }
@@ -17,7 +17,7 @@ export const App = () => {
     e.preventDefault()
 
     axios
-      .post('http://localhost:3333/users/login', { email, password })
+      .post('/users/login', { email, password })
       .then(res => console.log(res))
       .catch(err => console.log(err))
   }

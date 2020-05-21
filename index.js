@@ -6,4 +6,7 @@ app.set('port', PORT)
 
 const server = http.createServer(app)
 
-server.listen(PORT, () => console.log(`running on ${PORT}`))
+server.listen(PORT, () => {
+  console.log(`running on ${PORT}`)
+  console.log(`NODE_ENV=${process.env.NODE_ENV}`)
+})
