@@ -11,6 +11,12 @@ module.exports = {
       article_name: {
         type: Sequelize.STRING
       },
+      article_content: {
+        type: Sequelize.TEXT
+      },
+      genre_id: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

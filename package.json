@@ -27,8 +27,9 @@
   "scripts": {
     "start": "docker-compose up",
     "dev": "export NODE_ENV=development && nodemon --legacy-watch . --ignore '_react-client/'",
-    "test": "export NODE_ENV=test && npx sequelize-cli db:migrate && npx jest .",
-    "migrate:dev": "docker-compose run --rm -e NODE_ENV=development server npx sequelize db:migrate"
+    "test": "export NODE_ENV=test && npx sequelize-cli db:migrate:undo && npx sequelize-cli db:migrate && npx jest .",
+    "migrate:dev": "docker-compose run --rm -e NODE_ENV=development server npx sequelize db:migrate",
+    "seed:dev": "docker-compose run --rm -e NODE_ENV=development server sh -c 'npx sequelize db:seed:undo:all && npx sequelize db:seed:all'"
   },
   "author": "",
   "license": "ISC"
