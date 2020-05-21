@@ -8,7 +8,7 @@ export const App = () => {
 
   const fetchData = () => {
     axios
-      .get('api/genre', { withCredentials: true })
+      .get(`api/genre?token=${localStorage.getItem('jwt-token')}`, { withCredentials: true })
       .then(res => setData(res.data))
       .catch(err => console.log(err))
   }
@@ -18,7 +18,10 @@ export const App = () => {
 
     axios
       .post('/users/login', { email, password })
-      .then(res => console.log(res))
+      .then(res => {
+        console.log(res)
+        localStorage.setItem('jwt-token', res.data.token)
+      })
       .catch(err => console.log(err))
   }
 

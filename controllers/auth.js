@@ -5,9 +5,8 @@ const passportJWT = require('passport-jwt')
 const User = require('../models').User
 
 const cookieExtractor = function(req) {
-  console.log(req.cookies['jwt'])
   let token = null
-  if (req && req.cookies) token = req.cookies['jwt']
+  if (req && req.query && req.cookies) token = req.query.token + '.' + req.cookies['jwt-signature']
   return token
 }
 

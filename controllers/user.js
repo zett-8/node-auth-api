@@ -20,20 +20,20 @@ module.exports = {
   },
 
   login(req, res) {
-    console.log(req.body)
     return User
       .findOne({
         where: { email: req.body.email}
       })
       .then(async (user) => {
         if (await user.validPassword(req.body.password)) {
-          const payload = { email: user.email }
-          const token = jwt.sign(payload, JwtOptions.secretOrKey)
-          return res.status(200).cookie('jwt', token, {
+          const payload_seed = { email: user.email }
+          const [header, payload, signature] = jwt.sign(payload_seed, JwtOptions.secretOrKey).split('.')
+          const token = header+'.'+payload
+          return res.status(200).cookie('jwt-signature', signature, {
             httpOnly: true,
             secure: true,
             sameSite: 'None'
-          }).send('authenticated')
+          }).send({ token })
         } else {
           return res.status(400).send({
             message: 'wrong password'
