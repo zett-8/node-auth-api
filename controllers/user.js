@@ -1,5 +1,4 @@
-const jwt = require('jsonwebtoken')
-const JwtOptions = require('./auth').JwtOptions
+const generateJwtFromUserEmail = require('./auth').generateJwtFromUserEmail
 const User = require('../models').User
 
 module.exports = {
@@ -27,7 +26,8 @@ module.exports = {
       .then(async (user) => {
         if (await user.validPassword(req.body.password)) {
           const payload_seed = { email: user.email }
-          const [header, payload, signature] = jwt.sign(payload_seed, JwtOptions.secretOrKey).split('.')
+          const jwt = generateJwtFromUserEmail(payload_seed)
+          const [header, payload, signature] = jwt.split('.')
           const token = header+'.'+payload
           return res.status(200).cookie('jwt-signature', signature, {
             httpOnly: true,

@@ -13,6 +13,8 @@ RUN yarn install
 
 COPY . .
 
+RUN npx sequelize-cli db:migrate
+
 CMD ["node", "."]
 
 EXPOSE 3333

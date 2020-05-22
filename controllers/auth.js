@@ -19,8 +19,7 @@ JwtOptions.jwtFromRequest = cookieExtractor
 JwtOptions.secretOrKey = 'nt2yntakv2pktnh8'
 
 let strategy = new JwtStrategy(JwtOptions, (jwt_payload, next) => {
-  console.log('payload received', jwt_payload)
-
+  // console.log('payload received', jwt_payload)
   User
     .findOne({
       where: { email: jwt_payload.email }
@@ -36,10 +35,12 @@ let strategy = new JwtStrategy(JwtOptions, (jwt_payload, next) => {
 
 })
 
+const generateJwtFromUserEmail = (payload) => jwt.sign(payload, JwtOptions.secretOrKey)
+
 passport.use(strategy)
 
 module.exports = {
   passport,
-  JwtOptions
+  generateJwtFromUserEmail
 }
 

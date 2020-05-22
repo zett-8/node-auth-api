@@ -7,6 +7,10 @@
 ## JWT
 ![jwt](https://github.com/Zett-8/images/blob/master/jwt/jwt.png)
 
+## Testing
+- Jest
+- Supertest
+
 ## DB
 - Sequelize
 

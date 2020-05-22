@@ -1,8 +1,8 @@
 const Genre = require('../').Genre
 
-beforeEach(() => Genre.destroy({ truncate: true }))
-
 describe('Genre model', () => {
+  beforeEach(() => Genre.destroy({ truncate: true }))
+
   it('create test', async () => {
     const current = await Genre.findAll()
     expect(current).toHaveLength(0)
