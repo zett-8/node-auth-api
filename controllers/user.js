@@ -4,30 +4,22 @@ const User = require('../models').User
 
 module.exports = {
   signup(req, res) {
-    User
-      .findOne({ where: { email: req.body.email}})
-      .then(user => {
-        if (user) return res.status(400).send({
-          message: 'already exists'
+    return User
+      .create({
+        id: uuidv4(),
+        email: req.body.email,
+        password: req.body.password
+      })
+      .then(u => {
+        const user = JSON.parse(JSON.stringify(u))
+        delete user.password
+        return res.status(200).send(user)
+      })
+      .catch((err) => {
+        console.log(err)
+        return res.status(400).send({
+          message: 'error'
         })
-
-        return User
-          .create({
-            id: uuidv4(),
-            email: req.body.email,
-            password: req.body.password
-          })
-          .then(u => {
-            const user = JSON.parse(JSON.stringify(u))
-            delete user.password
-            return res.status(200).send(user)
-          })
-          .catch((err) => {
-            console.log(err)
-            return res.status(400).send({
-              message: 'error'
-            })
-          })
       })
   },
 
