@@ -25,11 +25,11 @@ describe('protected route', () => {
   it('authorized after login', async () => {
     await request(app)
       .post('/users/signup')
-      .send({ email: 'admin', password: 'admin'})
+      .send({ email: 'admin@gmail.com', password: 'admin'})
 
     const res = await request(app)
       .post('/users/login')
-      .send({ email: 'admin', password: 'admin'})
+      .send({ email: 'admin@gmail.com', password: 'admin'})
 
     cookie = res.headers['set-cookie']
     token = res.body.token

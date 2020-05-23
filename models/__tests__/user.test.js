@@ -1,3 +1,4 @@
+const { v4: uuidv4 } = require('uuid')
 const sequelize = require('../').sequelize
 const User = require('../').User
 
@@ -19,14 +20,15 @@ describe('user model', () => {
       .then(users => expect(users).toHaveLength(0))
 
     await User.create({
-      email: 'admin',
+      id: uuidv4(),
+      email: 'admin@gmail.com',
       password: 'admin'
     })
 
     const users = await User.findAll()
 
     expect(users).toHaveLength(1)
-    expect(users[0].email).toEqual('admin')
+    expect(users[0].email).toEqual('admin@gmail.com')
     expect(users[0].password).not.toEqual('admin')
     expect(await users[0].validPassword('admin')).toBe(true)
   })

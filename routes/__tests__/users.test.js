@@ -16,7 +16,7 @@ describe('users route', () => {
   reset()
 
   const user = {
-    email: 'admin1234',
+    email: 'admin1234@gmail.com',
     password: 'admin5678'
   }
 
@@ -27,6 +27,8 @@ describe('users route', () => {
 
     expect(res.statusCode).toEqual(200)
   })
+
+
 
   it('login', async () => {
     await request(app)
