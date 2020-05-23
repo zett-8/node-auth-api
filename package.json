@@ -15,7 +15,8 @@
     "passport-jwt": "^4.0.0",
     "pg": "^8.2.1",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^5.21.9"
+    "sequelize": "^5.21.9",
+    "uuid": "^8.1.0"
   },
   "devDependencies": {
     "jest": "^26.0.1",
@@ -26,7 +27,7 @@
   },
   "scripts": {
     "start": "docker-compose up",
-    "dev": "export NODE_ENV=development && nodemon --legacy-watch . --ignore '_react-client/'",
+    "dev": "nodemon --legacy-watch . --ignore '_react-client/'",
     "test": "export NODE_ENV=test && npx sequelize-cli db:migrate:undo:all && npx sequelize-cli db:migrate && npx jest . --runInBand --detectOpenHandles --forceExit",
     "migrate:dev": "docker-compose run --rm -e NODE_ENV=development server npx sequelize db:migrate",
     "seed:dev": "docker-compose run --rm -e NODE_ENV=development server sh -c 'npx sequelize db:seed:undo:all && npx sequelize db:seed:all'"

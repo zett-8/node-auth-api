@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export const App = () => {
   const [data, setData] = useState('')
-  const [email, setEmail] = useState('admin')
+  const [email, setEmail] = useState('admin@gmail.com')
   const [password, setPass] = useState('admin')
   const [status, setStatus] = useState(localStorage.getItem('jwt-token'))
 

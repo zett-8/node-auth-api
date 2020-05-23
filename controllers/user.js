@@ -1,21 +1,34 @@
+const { v4: uuidv4 } = require('uuid')
 const generateJwtFromUserEmail = require('./auth').generateJwtFromUserEmail
 const User = require('../models').User
 
 module.exports = {
   signup(req, res) {
-    return User
-      .create({
-        email: req.body.email,
-        password: req.body.password
+    User
+      .findOne({ where: { email: req.body.email}})
+      .then(user => {
+        if (user) return res.status(400).send({
+          message: 'already exists'
+        })
+
+        return User
+          .create({
+            id: uuidv4(),
+            email: req.body.email,
+            password: req.body.password
+          })
+          .then(u => {
+            const user = JSON.parse(JSON.stringify(u))
+            delete user.password
+            return res.status(200).send(user)
+          })
+          .catch((err) => {
+            console.log(err)
+            return res.status(400).send({
+              message: 'error'
+            })
+          })
       })
-      .then(u => {
-        const user = JSON.parse(JSON.stringify(u))
-        delete user.password
-        return res.status(200).send(user)
-      })
-      .catch(() => res.status(400).send({
-        message: 'error'
-      }))
   },
 
   login(req, res) {

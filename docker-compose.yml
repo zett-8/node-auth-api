@@ -2,12 +2,14 @@ version: '3'
 
 services:
   server:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     ports:
       - 3333:3333
     volumes:
       - .:/usr/src/app
-    command: sh -c "export NODE_ENV=development&& npx sequelize db:migrate && npm run dev"
+    command: sh -c "npx sequelize db:migrate && npm run dev"
     depends_on:
       - db
 
