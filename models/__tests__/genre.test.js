@@ -14,13 +14,14 @@ describe('Genre model', () => {
   })
 
   it('modify test', async () => {
-    await Genre.create({ genre_name: 'test' })
-    await Genre
+    const genre = await Genre.create({ genre_name: 'test' })
+    const genre_modified = await Genre
       .findOne({ where: { genre_name: 'test' }})
       .then(genre => genre.update({ genre_name: 'modified' }))
 
-    const modifiedGenre = await Genre.findAll()
-    expect(modifiedGenre[0].genre_name).toBe('modified')
+    // const modifiedGenre = await Genre.findAll()
+    expect(genre_modified.genre_name).toBe('modified')
+    expect(genre.updatedAt).not.toEqual(genre_modified.updatedAt)
   })
 
   it('delete test', async () => {
