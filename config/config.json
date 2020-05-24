@@ -9,7 +9,7 @@
   },
   "test": {
     "use_env_variable": true,
-    "url": "postgresql://postgres:postgres@localhost:5433/testdb",
+    "url": "postgresql://postgres:postgres@:5433/testdb",
     "username": "postgres",
     "password": "postgres",
     "database": "testdb",
