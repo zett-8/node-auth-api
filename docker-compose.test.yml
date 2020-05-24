@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  test-db:
+    container_name: test_db
+    build:
+      context: .
+      dockerfile: Dockerfile.pg
+    ports:
+      - '5433:5432'
+    environment:
+      - POSTGRES_HOST=testdb
+      - POSTGRES_DB=testdb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres

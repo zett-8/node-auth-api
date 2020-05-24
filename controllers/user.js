@@ -1,4 +1,3 @@
-const { v4: uuidv4 } = require('uuid')
 const generateJwtFromUserEmail = require('./auth').generateJwtFromUserEmail
 const User = require('../models').User
 
@@ -6,7 +5,6 @@ module.exports = {
   signup(req, res) {
     return User
       .create({
-        id: uuidv4(),
         email: req.body.email,
         password: req.body.password
       })

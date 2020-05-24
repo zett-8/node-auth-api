@@ -1,16 +1,6 @@
 const request = require('supertest')
+const reset = require('../../models/__tests__/_reset')
 const app = require('../../app')
-const sequelize = require('../../models').sequelize
-
-const reset = () => {
-  sequelize.query(`DELETE FROM Genres`)
-  sequelize.query(`DELETE FROM Articles`)
-  sequelize.query(`DELETE FROM Tags`)
-  sequelize.query(`DELETE FROM ArcTags`)
-  sequelize.query(`DELETE FROM Users`)
-}
-
-
 
 describe('users route', () => {
   reset()

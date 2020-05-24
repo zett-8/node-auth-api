@@ -28,7 +28,7 @@
   "scripts": {
     "start": "docker-compose up",
     "dev": "nodemon --legacy-watch . --ignore '_react-client/'",
-    "test": "export NODE_ENV=test && npx sequelize-cli db:migrate:undo:all && npx sequelize-cli db:migrate && npx jest . --runInBand --detectOpenHandles --forceExit",
+    "test": "docker-compose -f docker-compose.test.yml run --detach --name tmpDB -p 127.0.0.1:5433:5432 test-db && sleep 5 && export NODE_ENV=test && npx sequelize-cli db:migrate:undo:all && npx sequelize-cli db:migrate && npx jest . --runInBand --detectOpenHandles --forceExit && docker rm tmpDB -f",
     "migrate:dev": "docker-compose run --rm -e NODE_ENV=development server npx sequelize db:migrate",
     "seed:dev": "docker-compose run --rm -e NODE_ENV=development server sh -c 'npx sequelize db:seed:undo:all && npx sequelize db:seed:all'"
   },

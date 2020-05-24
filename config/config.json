@@ -8,9 +8,13 @@
     "dialect": "postgres"
   },
   "test": {
-    "use_env_variable": "",
-    "storage": "test-db.sqlite3",
-    "dialect": "sqlite",
+    "use_env_variable": true,
+    "url": "postgresql://postgres:postgres@localhost:5433/testdb",
+    "username": "postgres",
+    "password": "postgres",
+    "database": "testdb",
+    "host": "db",
+    "dialect": "postgres",
     "logging": false
   },
   "production": {

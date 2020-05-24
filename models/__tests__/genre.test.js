@@ -1,8 +1,8 @@
+const reset = require('./_reset')
 const Genre = require('../').Genre
 
 describe('Genre model', () => {
-  beforeEach(() => Genre.destroy({ truncate: true }))
-
+  beforeEach(() => reset())
   it('create test', async () => {
     const current = await Genre.findAll()
     expect(current).toHaveLength(0)

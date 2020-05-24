@@ -1,26 +1,15 @@
-const { v4: uuidv4 } = require('uuid')
-const sequelize = require('../').sequelize
+const reset = require('./_reset')
 const User = require('../').User
 
-
-const reset = () => {
-  sequelize.query(`DELETE FROM Genres`)
-  sequelize.query(`DELETE FROM Articles`)
-  sequelize.query(`DELETE FROM Tags`)
-  sequelize.query(`DELETE FROM ArcTags`)
-  sequelize.query(`DELETE FROM Users`)
-}
-
-reset()
-
 describe('user model', () => {
+  reset()
+
   it('create', async () => {
     User
       .findAll()
       .then(users => expect(users).toHaveLength(0))
 
     await User.create({
-      id: uuidv4(),
       email: 'admin@gmail.com',
       password: 'admin'
     })
