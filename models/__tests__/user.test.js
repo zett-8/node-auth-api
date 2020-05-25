@@ -5,13 +5,11 @@ describe('user model', () => {
   reset()
 
   it('create', async () => {
-    User
-      .findAll()
-      .then(users => expect(users).toHaveLength(0))
+    User.findAll().then((users) => expect(users).toHaveLength(0))
 
     await User.create({
       email: 'admin@gmail.com',
-      password: 'admin'
+      password: 'admin',
     })
 
     const users = await User.findAll()

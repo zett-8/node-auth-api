@@ -3,60 +3,60 @@ const Article = require('../models').Article
 
 module.exports = {
   list(req, res) {
-    return Genre
-      .findAll()
-      .then(genre => res.status(200).send(genre))
-      .catch(error => res.status(400).send(error))
+    return Genre.findAll()
+      .then((genre) => res.status(200).send(genre))
+      .catch((error) => res.status(400).send(error))
   },
 
   withChildren(req, res) {
-    return Genre
-      .findAll({
-        include: [{
+    return Genre.findAll({
+      include: [
+        {
           model: Article,
-          as: 'articles'
-        }]
-      })
-      .then(genre => res.status(200).send(genre))
-      .catch(error => res.status(400).send(error))
+          as: 'articles',
+        },
+      ],
+    })
+      .then((genre) => res.status(200).send(genre))
+      .catch((error) => res.status(400).send(error))
   },
 
   getById(req, res) {
-    return Genre
-      .findByPk(req.params.id, {
-        include: [{
+    return Genre.findByPk(req.params.id, {
+      include: [
+        {
           model: Article,
-          as: 'articles'
-        }]
-      })
-      .then(genre => res.status(200).send(genre))
-      .catch(() => res.status(400).send({
-        message: 'Not fount'
-      }))
+          as: 'articles',
+        },
+      ],
+    })
+      .then((genre) => res.status(200).send(genre))
+      .catch(() =>
+        res.status(400).send({
+          message: 'Not fount',
+        })
+      )
   },
 
   add(req, res) {
-    return Genre
-      .create({
-        genre_name: req.body.genre_name
-      })
-      .then(genre => res.status(200).send(genre))
-      .catch(error => res.status(400).send(error))
+    return Genre.create({
+      genre_name: req.body.genre_name,
+    })
+      .then((genre) => res.status(200).send(genre))
+      .catch((error) => res.status(400).send(error))
   },
 
   delete(req, res) {
-    return Genre
-      .findByPk(req.params.id)
-      .then(genre => {
-        if (!genre) {
-          return res.status(400).send({
-            message: 'not found'
-          })
-        }
-        return genre
-          .destroy()
-          .then(() => res.status(204).send())
-          .catch(error => res.status(400).send(error))
-      })
-  }
+    return Genre.findByPk(req.params.id).then((genre) => {
+      if (!genre) {
+        return res.status(400).send({
+          message: 'not found',
+        })
+      }
+      return genre
+        .destroy()
+        .then(() => res.status(204).send())
+        .catch((error) => res.status(400).send(error))
+    })
+  },
 }

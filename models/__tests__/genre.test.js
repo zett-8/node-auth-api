@@ -15,9 +15,9 @@ describe('Genre model', () => {
 
   it('modify test', async () => {
     const genre = await Genre.create({ genre_name: 'test' })
-    const genre_modified = await Genre
-      .findOne({ where: { genre_name: 'test' }})
-      .then(genre => genre.update({ genre_name: 'modified' }))
+    const genre_modified = await Genre.findOne({ where: { genre_name: 'test' } }).then((genre) =>
+      genre.update({ genre_name: 'modified' })
+    )
 
     // const modifiedGenre = await Genre.findAll()
     expect(genre_modified.genre_name).toBe('modified')
@@ -26,7 +26,7 @@ describe('Genre model', () => {
 
   it('delete test', async () => {
     await Genre.create({ genre_name: 'test' })
-    await Genre.findOne({ where: { genre_name: 'test'}}).then(genre => genre.destroy())
+    await Genre.findOne({ where: { genre_name: 'test' } }).then((genre) => genre.destroy())
 
     const genres = await Genre.findAll()
     expect(genres).toHaveLength(0)

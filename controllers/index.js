@@ -7,5 +7,5 @@ module.exports = {
   genre,
   article,
   tag,
-  user
+  user,
 }

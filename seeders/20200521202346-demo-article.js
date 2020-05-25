@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
@@ -8,33 +8,33 @@ module.exports = {
         article_content: 'contents1',
         genre_id: 1,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
         article_name: 'title2',
         article_content: 'contents2',
         genre_id: 1,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
         article_name: 'title3',
         article_content: 'contents3',
         genre_id: 2,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
         article_name: 'title4',
         article_content: 'contents4',
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
         article_name: 'title5',
         article_content: 'contents5',
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
     ])
     /*
@@ -58,5 +58,5 @@ module.exports = {
       Example:
       return queryInterface.bulkDelete('People', null, {});
     */
-  }
-};
+  },
+}
