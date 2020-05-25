@@ -1,8 +1,9 @@
 const createError = require('http-errors')
-const express = require('express')
 const cookieParser = require('cookie-parser')
 const loggar = require('morgan')
 const cors = require('cors')
+const express = require('express')
+const graphqlHTTP = require('express-graphql')
 
 const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users')
@@ -20,6 +21,13 @@ app.use(passport.initialize())
 app.use('/$', (req, res) => res.send('hello world'))
 app.use('/users', usersRouter)
 app.use('/api', passport.authenticate('jwt', { session: false }), indexRouter)
+
+app.use('/graphql',
+  process.env.NODE_ENV === 'production' ? passport.authenticate('jwt', { session: false }) : (req, res, next) => next(), graphqlHTTP({
+  schema: {},
+  graphiql: true
+}))
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
