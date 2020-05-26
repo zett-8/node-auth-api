@@ -5,6 +5,7 @@ const cors = require('cors')
 const express = require('express')
 const graphqlHTTP = require('express-graphql')
 
+const schema = require('./schema/schema')
 const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users')
 const passport = require('./controllers/auth').passport
@@ -28,7 +29,7 @@ app.use(
     ? passport.authenticate('jwt', { session: false })
     : (req, res, next) => next(),
   graphqlHTTP({
-    schema: {},
+    schema,
     graphiql: true,
   })
 )
