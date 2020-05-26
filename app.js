@@ -25,9 +25,13 @@ app.use('/api', passport.authenticate('jwt', { session: false }), indexRouter)
 
 app.use(
   '/graphql',
-  process.env.NODE_ENV === 'production'
-    ? passport.authenticate('jwt', { session: false })
-    : (req, res, next) => next(),
+  (req, res, next) => {
+    if (req.body.query && req.body.query.slice(0, 8) === 'mutation') {
+      passport.authenticate('jwt', { session: false })(req, res, next)
+    } else {
+      next()
+    }
+  },
   graphqlHTTP({
     schema,
     graphiql: true,
